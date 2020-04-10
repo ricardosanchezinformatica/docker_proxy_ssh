@@ -1,0 +1,21 @@
+version: "2"
+services:
+  proxy:
+    build: ./ssh_proxy
+    container_name: proxy
+    hostname: proxy
+    stdin_open: true
+    tty: true
+    ports:
+      - "443:443"
+    networks:
+      interna:
+        ipv4_address: 192.168.0.11
+
+networks:
+  interna:
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.0.0/24
+          gateway: 192.168.0.254
